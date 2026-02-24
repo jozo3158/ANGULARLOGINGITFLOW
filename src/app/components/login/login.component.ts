@@ -1,19 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+login(username: string, password: string) {
 
-@Component({
-  selector: 'app-login',
-  styleUrls: ['./login.component.scss'],
-  template: `
-    <button (click)="login()">Login</button>
-  `
-})
-export class LoginComponent {
-
-  constructor(private authService: AuthService) {}
-
-  login() {
-    this.authService.login('admin', '1234')
-      .subscribe(res => console.log(res));
+  if (!username || !password) {
+    console.log('Campos requeridos');
+    return;
   }
 
+  this.authService.login(username, password)
+    .subscribe(res => console.log('Validation', res));
 }
